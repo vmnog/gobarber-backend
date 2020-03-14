@@ -4,6 +4,8 @@ const server = express();
 
 server.use(express.json());
 
+var users = ['Diego', 'Tiago', 'Victor'];
+
 // Middleware Global
 server.use((req, res, next) => {
   console.time('Request');
@@ -32,16 +34,28 @@ function checkUserExists(req, res, next) {
   next();
 }
 
-var users = ['Diego', 'Tiago', 'Victor'];
+function checkUserInArray(req, res, next) {
+  const { id } = req.params;
+  const user = users[id];
+
+  if (!user) {
+    return res.status(400).json({ error: 'User does not exists' });
+  }
+
+  req.user = user;
+
+  next();
+}
 
 server.get('/users', (req, res) => {
   return res.json(users);
 });
 
-server.get('/users/:id', (req, res) => {
+server.get('/users/:id', checkUserInArray, (req, res) => {
   const { id } = req.params;
+  const user = req.user;
 
-  return res.json(users[id]);
+  return res.json(user);
 });
 
 server.post('/users', checkUserExists, (req, res) => {
@@ -52,7 +66,7 @@ server.post('/users', checkUserExists, (req, res) => {
   return res.json(users);
 });
 
-server.put('/users/:id', checkUserExists, (req, res) => {
+server.put('/users/:id', checkUserInArray, checkUserExists, (req, res) => {
   const { name } = req.body;
   const { id } = req.params;
 
@@ -61,7 +75,7 @@ server.put('/users/:id', checkUserExists, (req, res) => {
   return res.json(users);
 });
 
-server.delete('/users/:id', (req, res) => {
+server.delete('/users/:id', checkUserInArray, (req, res) => {
   const { id } = req.params;
 
   users.pop(id);
