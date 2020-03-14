@@ -4,6 +4,20 @@ const server = express();
 
 server.use(express.json());
 
+server.use((req, res, next) => {
+  console.log(`
+  --------------------
+  Método: ${req.method}\n
+  URL: ${req.url}\n
+  Params: ${JSON.stringify(req.params)}\n
+  Query: ${JSON.stringify(req.query)}\n
+  Body: ${JSON.stringify(req.body)}\n
+  ---------------------
+  `);
+
+  return next();
+});
+
 var users = ['Diego', 'Tiago', 'Victor'];
 
 server.get('/users', (req, res) => {
@@ -29,6 +43,14 @@ server.put('/users/:id', (req, res) => {
   const { id } = req.params;
 
   users[id] = newName;
+
+  return res.json(users);
+});
+
+server.delete('/users/:id', (req, res) => {
+  const { id } = req.params;
+
+  users.pop(id);
 
   return res.json(users);
 });
