@@ -4,19 +4,33 @@ const server = express();
 
 server.use(express.json());
 
+// Middleware Global
 server.use((req, res, next) => {
+  console.time('Request');
   console.log(`
+  \n\n\n\n\n\n\n\n\n\n\n
   --------------------
   Método: ${req.method}\n
   URL: ${req.url}\n
   Params: ${JSON.stringify(req.params)}\n
   Query: ${JSON.stringify(req.query)}\n
   Body: ${JSON.stringify(req.body)}\n
-  ---------------------
+  --------------------
   `);
 
-  return next();
+  next();
+
+  console.timeEnd('Request');
 });
+
+// Middleware Local
+function checkUserExists(req, res, next) {
+  if (!req.body.name) {
+    return res.status(400).json({ error: 'User name is required' });
+  }
+
+  next();
+}
 
 var users = ['Diego', 'Tiago', 'Victor'];
 
@@ -30,7 +44,7 @@ server.get('/users/:id', (req, res) => {
   return res.json(users[id]);
 });
 
-server.post('/users', (req, res) => {
+server.post('/users', checkUserExists, (req, res) => {
   const { name } = req.body;
 
   users.push(name);
@@ -38,11 +52,11 @@ server.post('/users', (req, res) => {
   return res.json(users);
 });
 
-server.put('/users/:id', (req, res) => {
-  const { newName } = req.body;
+server.put('/users/:id', checkUserExists, (req, res) => {
+  const { name } = req.body;
   const { id } = req.params;
 
-  users[id] = newName;
+  users[id] = name;
 
   return res.json(users);
 });
