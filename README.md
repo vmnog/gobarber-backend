@@ -44,3 +44,9 @@ $ docker ps
 ![](assets/postbird_login.png)
 
 <b>Create a new database in Postbird called `gobarber` </b>
+
+<b>Run all migrations to create all needed tables</b>
+
+```
+$ yarn sequelize db:migrate
+```
