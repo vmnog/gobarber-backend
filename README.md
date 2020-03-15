@@ -12,6 +12,21 @@
 
 ## How to run
 
+<b> Clone de project to your local repository </b>
+
+```
+$ git clone https://github.com/vmnog/gobarber-backend.git
+
+$ cd gobarber-backend
+
+```
+
+<b> Install all dependencies </b>
+
+```
+$ yarn install
+```
+
 <b>Start / Create your <a href="https://hub.docker.com/_/postgres">Docker Postgres</a> Container:</b>
 
 ```
