@@ -1,12 +1,14 @@
 # GoBarber Backend
 
 ### environment
+
 - Eslint
 - Prettier
 - EditorConfig
 - ES5 import/export syntax
 - Docker
 - Postgres
+- Sequelize
 
 ## How to run
 
@@ -15,15 +17,15 @@
 ```
 $ docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
 ```
+
 <b>Check if this container is running:</b>
 
 ```
 $ docker ps
 ```
+
 <b>To visualize the postgres database we are going to use <a href="https://www.electronjs.org/apps/postbird">Postbird</a> </b>
 
 ![](assets/postbird_login.png)
 
-<b>Create a new database in Postbird called ```gobarber``` </b>
-
-
+<b>Create a new database in Postbird called `gobarber` </b>

@@ -11,7 +11,9 @@
   "type": "module",
   "dependencies": {
     "esm": "^3.2.25",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^7.18.2",
+    "pg-hstore": "^2.3.3"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
@@ -20,6 +22,7 @@
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-prettier": "^3.1.2",
     "nodemon": "^2.0.2",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "sequelize-cli": "^5.5.1"
   }
 }
