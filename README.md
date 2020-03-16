@@ -5,7 +5,7 @@
 - Eslint
 - Prettier
 - EditorConfig
-- ES5 import/export syntax
+- ES5 import/export syntax (esm)
 - Docker
 - Postgres
 - Sequelize
@@ -43,10 +43,11 @@ $ docker ps
 
 ![](assets/postbird_login.png)
 
-<b>Create a new database in Postbird called `gobarber` </b>
+<b>Open Postbird and create a new database called `gobarber` </b>
 
 <b>Run all migrations to create all needed tables</b>
 
 ```
 $ yarn sequelize db:migrate
 ```
+### Continue ...
