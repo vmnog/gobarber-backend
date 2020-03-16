@@ -1,4 +1,4 @@
-# GoBarber Backend
+<h1 align="center">GoBarber Backend</h1>
 
 ### environment
 
