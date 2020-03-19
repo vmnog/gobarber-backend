@@ -8,7 +8,7 @@ class User extends Model {
         // Colunas que nao são pk / fk
         name: Sequelize.STRING,
         email: Sequelize.STRING,
-        password_hase: Sequelize.STRING,
+        password_hash: Sequelize.STRING,
         provider: Sequelize.BOOLEAN
       },
       {
