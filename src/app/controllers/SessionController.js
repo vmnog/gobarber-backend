@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 
+import authConfig from '../../config/auth';
 import User from '../models/User';
 
 class SessionController {
@@ -32,15 +33,9 @@ class SessionController {
         id,
         name,
         email,
-        token: jwt.sign(
-          {
-            id
-          },
-          // texto que só eu sei o que gera esse token (vmnoggobarber no site md5online.org)
-          'd709f2e8c43ed329d12974d91700dcb3',
-          // data de expiração do token
-          { expiresIn: '7d' }
-        )
+        token: jwt.sign({ id }, authConfig.secret, {
+          expiresIn: authConfig.expiresIn
+        })
       }
     });
   }
