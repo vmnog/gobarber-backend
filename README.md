@@ -2,13 +2,14 @@
 
 ### environment
 
-- Eslint
-- Prettier
-- EditorConfig
-- ES5 import/export syntax (esm)
-- Docker
-- Postgres
-- Sequelize
+- <b>Eslint</b>: linting the code
+- <b>Prettier</b>: make the code prettier
+- <b>EditorConfig</b>: force standarts in vscode for all coders
+- <b>Esm</b>: able to use ES5 import/export syntax
+- <b>Docker</b>: create containers without having to install database in computer
+- <b>Postgres</b>: for realational sql data
+- <b>Sequelize</b>: to interact with postgres via MVC
+- <b>Bcryptjs</b>: to encrypt data such as user's password
 
 ## How to run
 
@@ -50,4 +51,5 @@ $ docker ps
 ```
 $ yarn sequelize db:migrate
 ```
+
 ### Continue ...
