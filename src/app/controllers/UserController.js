@@ -21,7 +21,9 @@ class UserController {
   }
 
   async update(req, res) {
-    return res.json({ ok: true });
+    const { userId } = req;
+
+    return res.json({ userId });
   }
 }
 
