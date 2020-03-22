@@ -10,6 +10,8 @@
 - <b>Postgres</b>: for realational sql data
 - <b>Sequelize</b>: to interact with postgres via MVC
 - <b>Bcryptjs</b>: to encrypt data such as user's password
+- <b>jsonwebtoken</b>: to create session for a user and login
+- <a href="https://www.md5online.org/">MD5 Online</a>: generate sentence hash to security use of jwt (SessionController)
 
 ## How to run
 
