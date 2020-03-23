@@ -12,6 +12,10 @@
 - <b>Bcryptjs</b>: to encrypt data such as user's password
 - <b>jsonwebtoken</b>: to create session for a user and login
 - <a href="https://www.md5online.org/">MD5 Online</a>: generate sentence hash to security use of jwt (SessionController)
+- <b>YUP</b>: to validate inputs on http requests
+- <b>Multer</b>: to handle multi part form data (file upload)
+- <b>Crypto</b>: to generate handle bytes to storage files with unique names
+- <b>path/resolve</b>: to handle with folder location in this project (where the files are going to be storaged)
 
 ## How to run
 
