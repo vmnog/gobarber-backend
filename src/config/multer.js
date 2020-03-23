@@ -7,11 +7,9 @@ export default {
     destination: resolve(__dirname, '..', '..', 'temp', 'uploads'),
     filename: (req, file, cb) => {
       // tratando o nome do arquivo que esta sendo subido
-      crypto.handleBytes(16, (err, res) => {
-        if (err) return cb(err);
+      crypto.randomBytes(16, (err, res) => {
+        if (err) return err;
 
-        // cb(erro, response)
-        // result => iojw49f83j4fuw.png
         return cb(null, res.toString('hex') + extname(file.originalname));
       });
     }
