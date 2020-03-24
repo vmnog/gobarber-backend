@@ -1,4 +1,7 @@
 <h1 align="center">GoBarber Backend</h1>
+<p align="center">
+<img src="https://skylab.rocketseat.com.br/api/files/1579617211528.svg">
+</p>
 
 ### environment
 
