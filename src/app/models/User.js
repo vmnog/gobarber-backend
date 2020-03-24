@@ -29,7 +29,8 @@ class User extends Model {
   // metodo que associa o campo avatar_id com o campo id do model File
   static associate(models) {
     this.belongsTo(models.File, {
-      foreignKey: 'avatar_id'
+      foreignKey: 'avatar_id',
+      as: 'avatar' // this association we are calling it avatar
     });
   }
 

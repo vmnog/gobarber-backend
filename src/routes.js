@@ -14,8 +14,7 @@ const routes = new Router();
 routes.post('/users', UserController.store);
 routes.put('/users', authMiddleware, UserController.update);
 
-// Providers
-routes.get('/providers', authMiddleware, ProviderController.index);
+routes.get('/providers', ProviderController.index);
 
 // Session
 routes.post('/sessions', SessionController.store);
