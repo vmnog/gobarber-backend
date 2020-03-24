@@ -26,6 +26,13 @@ class User extends Model {
     return this;
   }
 
+  // metodo que associa o campo avatar_id com o campo id do model File
+  static associate(models) {
+    this.belongsTo(models.File, {
+      foreignKey: 'avatar_id'
+    });
+  }
+
   // method to compare if password given is equal to the user password
   checkPassword(password) {
     return bcrypt.compare(password, this.password_hash);

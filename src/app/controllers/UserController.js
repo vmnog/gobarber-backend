@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 import User from '../models/User';
+import File from '../models/File';
 
 class UserController {
   async store(req, res) {
@@ -39,59 +40,60 @@ class UserController {
   }
 
   async update(req, res) {
+    /**
+     * Validate user input data.
+     */
     const schema = Yup.object().shape({
       name: Yup.string(),
       email: Yup.string().email(),
-      oldPassword: Yup.string(),
-      // Se usuario enviar oldPassword entao o campo password é obrigatorio na atualizacao de senha
+      oldPassword: Yup.string().min(6),
       password: Yup.string()
         .min(6)
-        .when('oldPassword', (oldPassword, field) => {
-          return oldPassword ? field.required() : field;
-        }),
-      confirmPassword: Yup.string().when('password', (password, field) => {
-        // confirm password tem que estar entre os valores de password
-        return password ? field.required().oneOf([Yup.ref('password')]) : field;
-      })
+        .when('oldPassword', (oldPassword, field) =>
+          oldPassword ? field.required() : field
+        ),
+      confirmPassword: Yup.string().when('password', (password, field) =>
+        password ? field.required().oneOf([Yup.ref('password')]) : field
+      )
     });
 
-    if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({
-        error: 'Validation fails'
-      });
+    try {
+      await schema.validate(req.body);
+    } catch (err) {
+      return res
+        .status(422)
+        .json({ error: `Validation fails: ${err.message}` });
     }
 
-    const { email, password, oldPassword } = req.body;
-
+    /**
+     * Checks if the user has changed their email address to an existing one.
+     */
+    const { email, oldPassword } = req.body;
     const user = await User.findByPk(req.userId);
 
-    // se usuario ta tentando alterar o email
     if (email !== user.email) {
-      const userExists = await User.findOne({
-        where: {
-          email
-        }
-      });
+      const userExists = await User.findOne({ where: { email } });
 
       if (userExists) {
-        return res.status(401).json({
-          error: 'E-mail already registered.'
-        });
+        return res.status(422).json({ error: 'User already exists.' });
       }
     }
 
-    // compara senha antiga com senha nova
-    // Só vai fazer a comparação caso o parametro oldpassword exista
-    // se oldpassword n existe entao o usuario n quer alterar a senha
+    /**
+     * Checks if the user password is valid.
+     */
     if (oldPassword && !(await user.checkPassword(oldPassword))) {
-      return res.status(401).json({
-        error: 'Password does not match.'
-      });
+      return res.status(401).json({ error: 'Password does not match.' });
     }
 
-    const { id, name, provider } = await user.update(req.body);
+    /**
+     * Update the user data.
+     */
+    await user.update(req.body);
 
-    return res.status(200).json({
+    const { id, name, provider } = await User.findByPk(req.userId);
+
+    return res.json({
       id,
       name,
       email,
