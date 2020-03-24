@@ -10,13 +10,14 @@ import fileMiddleware from './app/middlewares/file';
 
 const routes = new Router();
 
-// User
+// Users
 routes.post('/users', UserController.store);
 routes.put('/users', authMiddleware, UserController.update);
 
+// Providers
 routes.get('/providers', ProviderController.index);
 
-// Session
+// Sessions
 routes.post('/sessions', SessionController.store);
 
 //Files

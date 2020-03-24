@@ -1,11 +1,11 @@
 # Common commands
 
 Fluxo de criação:
-1. Rota
-2. Controller
-3. Migration
-4. Model
-5. importa no index.js e coloca no array de models
+1. Migration
+2. Model
+3. Controller
+4. Rota
+5. importa o model no index.js e coloca no array de models
 6. Modifica o Controller
 
 ## Sequelize
