@@ -10,7 +10,14 @@ class AppointmentController {
       where: {
         user_id: req.userId,
         canceled_at: null
-      }
+      },
+      order: ['date'],
+      include: [
+        {
+          model: User,
+          as: 'provider'
+        }
+      ]
     });
 
     return res.json(appointments);
