@@ -8,6 +8,12 @@ Fluxo de criação:
 5. importa o model no index.js e coloca no array de models
 6. Modifica o Controller
 
+### Date format
+  ```
+	"date": "2020-03-25T12:00:00-03:00"
+            ano-mes-diaThora:minutos:segundos-timezone
+  ```
+
 ## Sequelize
 
 <b>Create a migration</b>
