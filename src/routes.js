@@ -26,5 +26,6 @@ routes.post('/files', authMiddleware, fileMiddleware, FileController.store);
 
 // Appointment
 routes.post('/appointments', authMiddleware, AppointmentController.store);
+routes.get('/appointments', authMiddleware, AppointmentController.index);
 
 export default routes;
