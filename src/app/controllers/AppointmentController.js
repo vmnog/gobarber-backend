@@ -7,12 +7,25 @@ import File from '../models/File';
 
 class AppointmentController {
   async index(req, res) {
+    // se req.query.page, se nao for informado entao o default é 1
+    const { page = 1 } = req.query;
+
     const appointments = await Appointment.findAll({
       where: {
         user_id: req.userId,
         canceled_at: null
       },
       order: ['date'],
+      limit: 20,
+      // offset = quantos items quer pular
+      offset: (page - 1) * 20, // continha que lista no maximo vinte items
+      /*
+       * Se usuario ta na pagina 2
+       * (2 - 1) = 1
+       *  1 * 20 = --> 20 <--
+       *   logo o offset vai listar tudo a partir do item 20
+       */
+
       attributes: ['id', 'date'],
       include: [
         {
