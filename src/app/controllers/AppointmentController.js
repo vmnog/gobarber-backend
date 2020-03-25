@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 
 import Appointment from '../models/Appointment';
 import User from '../models/User';
+import File from '../models/File';
 
 class AppointmentController {
   async index(req, res) {
@@ -12,10 +13,20 @@ class AppointmentController {
         canceled_at: null
       },
       order: ['date'],
+      attributes: ['id', 'date'],
       include: [
         {
+          // filling response with provider data, but only id and name
           model: User,
-          as: 'provider'
+          as: 'provider',
+          attributes: ['id', 'name'],
+          include: [
+            {
+              model: File,
+              as: 'avatar',
+              attributes: ['id', 'url', 'name', 'path']
+            }
+          ]
         }
       ]
     });
