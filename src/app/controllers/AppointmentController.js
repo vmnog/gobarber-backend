@@ -75,6 +75,12 @@ class AppointmentController {
       });
     }
 
+    if (req.userId === provider_id) {
+      return res.status(401).json({
+        error: 'You cannot create appointments with yourself'
+      });
+    }
+
     // parseISO transforma o date num objeto date do js, e o startofHour pega somente a hora da data
     const hourStart = startOfHour(parseISO(date));
 
