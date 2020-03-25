@@ -19,6 +19,7 @@
 - <b>Multer</b>: to handle multi part form data (file upload)
 - <b>Crypto</b>: to generate handle bytes to storage files with unique names
 - <b>path/resolve</b>: to handle with folder location in this project (where the files are going to be storaged)
+- <b>date-fns</b>: to handle dates/days/hour in providers appointments
 
 ## How to run
 
