@@ -45,10 +45,25 @@ class AppointmentController {
       });
     }
 
+    // checando se o provider do req.body já tem horario marcado nesta date do req.body
+    const providerIsAvailable = await Appointment.findOne({
+      where: {
+        provider_id,
+        canceled_at: null,
+        date: hourStart
+      }
+    });
+
+    if (providerIsAvailable) {
+      return res.status(400).json({
+        error: 'This provider already has a appointment at this hour.'
+      });
+    }
+
     const appointment = await Appointment.create({
       user_id: req.userId, // userId é enviado pelo middleware de auth, é o id do usuario logado
       provider_id,
-      date
+      date: hourStart // forçando que os agendamentos sempre tenham os minutos zerados(13:00, 14:00)
     });
 
     return res.json(appointment);
