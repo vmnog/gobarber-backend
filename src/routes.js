@@ -35,5 +35,10 @@ routes.get('/schedules', authMiddleware, ScheduleController.index);
 
 // Notifications
 routes.get('/notifications', authMiddleware, NotificationController.index);
+routes.post(
+  '/notifications/:id',
+  authMiddleware,
+  NotificationController.update
+);
 
 export default routes;
