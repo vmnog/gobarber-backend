@@ -42,6 +42,8 @@ $ yarn sequelize db:migrate:undo:all
 
 ## Docker
 
+### Postgres Docker
+
 <b>Start / Create your <a href="https://hub.docker.com/_/postgres">Docker Postgres</a> Container:</b>
 
 ```
@@ -70,4 +72,14 @@ $ docker ps
 
 ```
 $ docker ps -a
+```
+
+
+### MongoDB Docker
+
+<b>Start / Create your Docker MongoDB Container:</b>
+
+```
+$ docker run --name mongobarber -p 27017:27017 -d -t mongo
+
 ```
