@@ -1,4 +1,4 @@
-import { startOfHour, parseISO, isBefore, format } from 'date-fns';
+import { startOfHour, parseISO, isBefore, format, subHours } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import * as Yup from 'yup';
 
@@ -127,6 +127,42 @@ class AppointmentController {
     const notification = await Notification.create({
       content: `Novo agendamento de ${user.name} para o dia ${formattedDate}`,
       user: provider_id
+    });
+
+    return res.json(appointment);
+  }
+
+  async delete(req, res) {
+    const { id } = req.params;
+    const appointment = await Appointment.findByPk(id);
+
+    // Se o cliente está tentando cancelar um appointment que não foi ele que agendou
+    if (appointment.user_id !== req.userId) {
+      return res.status(401).json({
+        error: 'You do not have permission to cancel this appointment'
+      });
+    }
+
+    // Se ja foi cancelado
+    if (appointment.canceled_at) {
+      return res.status(400).json({
+        error: 'This appointment was canceled already'
+      });
+    }
+
+    const dateNow = new Date();
+    const twoHoursBefore = subHours(appointment.date, 2);
+
+    // Se falta menos de duas horas pro horario do appointment
+    if (isBefore(twoHoursBefore, dateNow)) {
+      return res.status(401).json({
+        error:
+          'You can only cancel an appointment 2 hours before the expected appointment date'
+      });
+    }
+
+    await appointment.update({
+      canceled_at: dateNow
     });
 
     return res.json(appointment);
