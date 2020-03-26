@@ -44,6 +44,13 @@ $ yarn install
 $ docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
 ```
 
+<b>Start / Create your Docker MongoDB Container:</b>
+
+```
+$ docker run --name mongobarber -p 27017:27017 -d -t mongo
+
+```
+
 <b>Check if this container is running:</b>
 
 ```
