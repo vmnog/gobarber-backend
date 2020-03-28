@@ -3,7 +3,7 @@
 <img src="https://skylab.rocketseat.com.br/api/files/1579617211528.svg">
 </p>
 
-### environment
+### Environment
 
 - <b>Eslint</b>: linting the code
 - <b>Prettier</b>: make the code prettier
