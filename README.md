@@ -20,6 +20,7 @@
 - <b>Crypto</b>: to generate handle bytes to storage files with unique names
 - <b>path/resolve</b>: to handle with folder location in this project (where the files are going to be storaged)
 - <b>date-fns</b>: to handle dates/days/hour in providers appointments
+- <b>Nodemailer</b>: to send emails
 
 ## How to run
 
@@ -68,5 +69,7 @@ $ docker ps
 ```
 $ yarn sequelize db:migrate
 ```
+
+<b> To visualize the email that we are sending to the provider we use <a href="https://mailtrap.io">Mailtrap</a>.
 
 ### Continue ...
