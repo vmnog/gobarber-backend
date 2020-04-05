@@ -21,6 +21,7 @@
 - <b>path/resolve</b>: to handle with folder location in this project (where the files are going to be storaged)
 - <b>date-fns</b>: to handle dates/days/hour in providers appointments
 - <b>Nodemailer</b>: to send emails
+- <b>handlebarsjs</b>: to set template engines for emails
 
 ## How to run
 
