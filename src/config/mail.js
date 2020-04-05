@@ -7,6 +7,6 @@ export default {
   },
   secure: false,
   default: {
-    from: 'Victor Nogueira <noreply@gobarber.com>'
+    from: 'Equipe GoBarber <noreply@gobarber.com>'
   }
 };

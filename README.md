@@ -73,4 +73,6 @@ $ yarn sequelize db:migrate
 
 <b> To visualize the email that we are sending to the provider we use <a href="https://mailtrap.io">Mailtrap</a>.
 
+Using mailtrap substitute the values in src/app/config/mail.js to your smtp values, otherwise the emails feature won't work.
+
 ### Continue ...

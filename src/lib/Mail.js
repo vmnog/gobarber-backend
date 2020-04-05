@@ -30,11 +30,11 @@ class Mail {
           // configurando as pastas onde vao ficar os templates de email
           layoutsDir: resolve(viewPath, 'layouts'),
           partialsDir: resolve(viewPath, 'partials'),
-          defaultLayout: 'default', // ~/app/views/emails/layouts/default.hbs
-          extname: '.hbs' // qual estensão estamos usando [.hbs  /  .handlebars]
+          defaultLayout: 'default' // ~/app/views/emails/layouts/default.hbs
+          // extname: '.hbs' // qual estensão estamos usando [.hbs  /  .handlebars]
         }),
-        viewPath,
-        extname: '.hbs'
+        viewPath
+        // extname: '.hbs'
       })
     );
   }

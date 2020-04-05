@@ -143,6 +143,11 @@ class AppointmentController {
           model: User,
           as: 'provider',
           attributes: ['name', 'email']
+        },
+        {
+          model: User,
+          as: 'user',
+          attributes: ['name']
         }
       ]
     });
@@ -176,10 +181,20 @@ class AppointmentController {
       canceled_at: dateNow
     });
 
+    const appointmentFormatedDate = format(
+      appointment.date,
+      "'dia' dd 'de' MMMM', às' H:mm'h'", // formatando a data do agendamento,  e o formato "o dia 26 de Março as 18:00h"
+      { locale: pt } // Informando que o tipo de data é formatado na linguagem portugues
+    );
+
     await Mail.sendMail({
       to: `${appointment.provider.name} <${appointment.provider.email}>`,
       subject: 'Agendamento cancelado',
-      text: 'Você tem um novo cancelamento'
+      template: 'cancellation',
+      context: {
+        provider: appointment.provider.name,
+        date: appointmentFormatedDate
+      }
     });
 
     return res.json(appointment);
