@@ -22,6 +22,8 @@
 - <b>date-fns</b>: to handle dates/days/hour in providers appointments
 - <b>Nodemailer</b>: to send emails
 - <b>handlebarsjs</b>: to set template engines for emails
+- <b>Sentry</b>: to see / manage errors more clearly
+- <b>Youch</b>: to treat and format errors
 
 ## How to run
 
