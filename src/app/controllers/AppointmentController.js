@@ -21,6 +21,7 @@ class AppointmentController {
         canceled_at: null
       },
       order: ['date'],
+
       limit: 20,
       // offset = quantos items quer pular
       offset: (page - 1) * 20, // continha que lista no maximo vinte items
@@ -31,7 +32,7 @@ class AppointmentController {
        *   logo o offset vai listar tudo a partir do item 20
        */
 
-      attributes: ['id', 'date'],
+      attributes: ['id', 'date', 'past', 'cancelable'],
       include: [
         {
           // filling response with provider data, but only id and name
