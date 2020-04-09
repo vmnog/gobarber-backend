@@ -15,7 +15,7 @@ class AppointmentController {
     // se req.query.page, se nao for informado entao o default é 1
     const { page = 1 } = req.query;
 
-    const appointments = await Appointment.finddAll({
+    const appointments = await Appointment.findAll({
       where: {
         user_id: req.userId,
         canceled_at: null

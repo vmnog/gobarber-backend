@@ -28,7 +28,7 @@ class Database {
   mongo() {
     this.mongoConnection = mongoose.connect(
       // se nao tiver usuario e senha nesse banco de dados pode passar direto a porta / nome da base de dados (se nao existir o mongo cria sozinho)
-      'mongodb://localhost:27017/gobarber',
+      process.env.MONGO_URL,
       {
         useNewUrlParser: true,
         useFindAndModify: true
