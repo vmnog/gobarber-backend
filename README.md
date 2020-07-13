@@ -7,7 +7,7 @@
 
 - <b>Eslint</b>: linting the code
 - <b>Prettier</b>: make the code prettier
-- <b>EditorConfig</b>: force standarts in vscode for all coders
+- <b>EditorConfig</b>: force standarts vscode for all coders
 - <b>Esm</b>: able to use ES5 import/export syntax
 - <b>Docker</b>: create containers without having to install database in computer
 - <b>Postgres</b>: for realational sql data
